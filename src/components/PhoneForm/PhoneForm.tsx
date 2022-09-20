@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useUpdatePhone } from '../../services';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useUpdatePhone } from '../../services/persons.mutations.service';
 
 
 export interface PhoneFormInterface {
@@ -12,7 +12,7 @@ const PhoneForm: React.FC<PhoneFormInterface> = ({ notifyError }) => {
 
 	const [ changeNumber, results ] = useUpdatePhone(notifyError);
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
 
 		changeNumber({

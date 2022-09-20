@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Persons } from '../../Models/person';
-import { useFindPerson } from '../../services';
-
+import { Persons } from '../../models/person';
+import { useFindPerson } from '../../services/persons.query.service';
 
 export interface PersonInterface {
 	persons: Persons[]

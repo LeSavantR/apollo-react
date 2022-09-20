@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useCreatePerson } from '../../services';
+import React, { FormEvent, useState } from 'react';
+import { useCreatePerson } from '../../services/persons.mutations.service';
 
 
 export interface PersonFormInterface {
@@ -9,22 +9,22 @@ export interface PersonFormInterface {
 
 const PersonForm: React.FC<PersonFormInterface> = ({ notifyError, children }) => {
 
-	const [ name, setName ] = useState('')
-	const [ phone, setPhone ] = useState('')
-	const [ city, setCity ] = useState('')
-	const [ street, setStreet ] = useState('')
+	const [ name, setName ] = useState('');
+	const [ phone, setPhone ] = useState('');
+	const [ city, setCity ] = useState('');
+	const [ street, setStreet ] = useState('');
 
-	const [ createPerson ] = useCreatePerson(notifyError)
+	const [ createPerson ] = useCreatePerson(notifyError);
 
-	const handleSubmit = (event: any) => {
-		event.preventDefault()
+	const handleSubmit = (event: FormEvent) => {
+		event.preventDefault();
 
-		createPerson({variables: { name, phone, city, street }})
+		createPerson({variables: { name, phone, city, street }});
 
-		setName('')
-		setPhone('')
-		setCity('')
-		setStreet('')
+		setName('');
+		setPhone('');
+		setCity('');
+		setStreet('');
 	}
 
 	return (
