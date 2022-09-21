@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { LoginForm } from './components/LoginForm';
-import { Notify } from './components/Notify';
-import { Person } from './components/Person';
-import { PersonForm } from './components/PersonForm';
-import { PhoneForm } from './components/PhoneForm';
-import { usePersons } from './services/persons.query.service';
+import { LoginForm, Person, PhoneForm, PersonForm, Notify } from './components';
+import { usePersons } from './services';
 
 export interface AppInterface {}
 

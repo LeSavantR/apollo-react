@@ -1,5 +1,5 @@
+import { ALL_PERSONS, FIND_PERSON } from "@/graphql";
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { ALL_PERSONS, FIND_PERSON } from "../graphql/queries";
 
 export const usePersons = () => {
   const results = useQuery(ALL_PERSONS);

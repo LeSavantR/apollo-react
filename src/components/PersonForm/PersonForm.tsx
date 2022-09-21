@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { useCreatePerson } from '../../services/persons.mutations.service';
+import { useCreatePerson } from '@/services';
 
 
 export interface PersonFormInterface {

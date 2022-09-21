@@ -1,6 +1,5 @@
+import { ALL_PERSONS, CREATE_PERSON, EDIT_NUMBER } from "@/graphql";
 import { useMutation } from "@apollo/client";
-import { CREATE_PERSON, EDIT_NUMBER } from "../graphql/mutations";
-import { ALL_PERSONS } from "../graphql/queries";
 
 export const useCreatePerson = (notifyError: FunctionStringCallback) => {
   const results = useMutation(CREATE_PERSON, {

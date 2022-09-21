@@ -1,6 +1,6 @@
-import React, { useState, useEffect, FormEvent } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../../graphql/mutations';
+import { LOGIN } from '@/graphql';
 
 export interface LoginFormInterface {
 	notifyError: FunctionStringCallback
@@ -19,7 +19,7 @@ const LoginForm: React.FC<LoginFormInterface> = ({ notifyError, setToken }) => {
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
 
-		login(username, password)
+		login({variables: {username, password}});
 	};
 
 	return (

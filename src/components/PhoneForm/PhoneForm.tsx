@@ -1,5 +1,5 @@
+import { useUpdatePhone } from '@/services';
 import React, { FormEvent, useEffect, useState } from 'react';
-import { useUpdatePhone } from '../../services/persons.mutations.service';
 
 
 export interface PhoneFormInterface {
