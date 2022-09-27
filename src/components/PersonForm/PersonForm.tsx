@@ -1,5 +1,6 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useReducer, useState } from 'react';
 import { useCreatePerson } from '@/services';
+import { useReducers } from '@/hooks';
 
 
 export interface PersonFormInterface {
@@ -7,35 +8,38 @@ export interface PersonFormInterface {
 	children?: React.ReactNode
 }
 
-const PersonForm: React.FC<PersonFormInterface> = ({ notifyError, children }) => {
+const PersonForm: React.FC<PersonFormInterface> = ({ notifyError }) => {
 
-	const [ name, setName ] = useState('');
-	const [ phone, setPhone ] = useState('');
-	const [ city, setCity ] = useState('');
-	const [ street, setStreet ] = useState('');
+	const [ inputValues, dispatch ] = useReducers();
 
 	const [ createPerson ] = useCreatePerson(notifyError);
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
 
-		createPerson({variables: { name, phone, city, street }});
+		createPerson({variables: inputValues});
 
-		setName('');
-		setPhone('');
-		setCity('');
-		setStreet('');
+		dispatch({ type: 'clear' });
 	}
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target
+		dispatch({
+			type: 'change_value', payload: {
+				inputName: name,
+				inputValue: value
+			}
+		})
+	};
 
 	return (
 		<div>
-			{children}
 			<h2>Create New Person</h2>
 			<form onSubmit={handleSubmit}>
-				<input placeholder='Name' value={name} onChange={(event) => setName(event.target.value)} />
-				<input placeholder='Phone' value={phone} onChange={(event) => setPhone(event.target.value)} />
-				<input placeholder='City' value={city} onChange={(event) => setCity(event.target.value)} />
-				<input placeholder='Street' value={street} onChange={(event) => setStreet(event.target.value)} />
+				<input placeholder='Name' name='name' value={inputValues.name} onChange={handleChange} />
+				<input placeholder='Phone' name='phone' value={inputValues.phone} onChange={handleChange} />
+				<input placeholder='City' name='city' value={inputValues.city} onChange={handleChange} />
+				<input placeholder='Street' name='street' value={inputValues.street} onChange={handleChange} />
 				<input type={'submit'} value='Agregar' />
 			</form>
 		</div>

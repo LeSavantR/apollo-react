@@ -28,7 +28,7 @@ const Person: React.FC<PersonInterface> = ({ persons }) => {
 				<h2>{person.name}</h2>
 				<p>{person.phone} <br /></p>
 				<p>{person.address.city}/{person.address.street}<br /></p>
-				<p>{person.id}<br /></p>
+				<p>{person.id}<br/></p>
 				<button onClick={() => setPerson(null)}>Close</button>
 			</div>
 		);
@@ -37,10 +37,9 @@ const Person: React.FC<PersonInterface> = ({ persons }) => {
 	return (
 		<>
 			{
-				persons.map((person: Persons) => (
+				persons.map((person) => (
 					<div key={person.id} onClick={() => showPerson(person.name)}>
 						<h2>{person.name}</h2>
-						<p>{person.id}</p>
 						<p>{person.phone}</p>
 					</div>
 				))
